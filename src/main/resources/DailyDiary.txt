@@ -1,0 +1,8 @@
+Today is 15 Jan 2022.
+Time is 4:53 AM.
+
+You might be thinking what am I doing so early. That's because I didn't sleep tonight.
+Okay! What are the plans for today ?
+1. Read about Apache HIVE.
+2. Learn more about Spark.
+3. Do exercise.
