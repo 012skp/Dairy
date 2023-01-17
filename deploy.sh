@@ -10,11 +10,16 @@ then
 else
   if [ $1 == "ALL" ]
   then
+    echo "Encrypting the file"
     $BASEDIR/gradlew  :encryptAndCleanTask
 
     echo "Adding the newly added encrypted files..."
     git  add src/main/*
+
+    echo "Commiting the files"
     git commit -m "usual update"
+
+    echo "Pushing the files to Github"
     git push
   elif [ $1 == "ENC" ]
   then
