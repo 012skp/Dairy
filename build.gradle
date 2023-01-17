@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 group 'org.example'
@@ -8,10 +8,47 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+java {
+    sourceCompatibility = "VERSION_1_8"
+    targetCompatibility = "VERSION_1_8"
+}
+
+
+mainClassName = 'com.shailesh.SaveFile'
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.shailesh.SaveFile'
+    }
+}
+
+task encryptTask(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.shailesh.SaveFile'
+    args 'ENCRYPT_FILE'
+}
+
+task encryptAndCleanTask(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.shailesh.SaveFile'
+    args 'ENCRYPT_AND_CLEAN_DIARY'
+}
+
+task decryptFileTask(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.shailesh.SaveFile'
+    if(project.hasProperty('filename')) {
+        args 'DECRYPT_FILE', project.findProperty('filename')
+    } else {
+        println "filename property is required. Add param -Pfilename=<File Name>"
+    }
+}
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'com.googlecode.jinahya:ocap-api:1.1.2'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
 }
 
 test {
