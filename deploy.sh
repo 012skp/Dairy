@@ -13,7 +13,7 @@ else
     $BASEDIR/gradlew  :encryptAndCleanTask
 
     echo "Adding the newly added encrypted files..."
-    git  add src/main/java/com/shailesh/files/*
+    git  add src/main/*
     git commit -m "usual update"
     git push
   elif [ $1 == "ENC" ]
